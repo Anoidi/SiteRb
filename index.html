@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>📦 Вакансии: Курьер, Доставщик</title>
+    <meta name="description" content="Открыты вакансии курьера и доставщика. Высокий доход, гибкий график.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header-emoji">💼</div>
+        <h1>ОТКРЫТЫ ВАКАНСИИ</h1>
+        <h2 class="subtitle">Стабильная работа • Достойный доход</h2>
+        
+        <div class="jobs">
+            <div class="job-card">
+                <div class="job-icon">🚶‍♂️</div>
+                <h2>Курьер</h2>
+                <div class="salary">💰 Стабильные выплаты</div>
+                <ul>
+                    <li>📍 Работа по городу</li>
+                    <li>⏰ <span class="benefit-highlight">Гибкий график</span></li>
+                    <li>🎓 Бесплатное обучение</li>
+                    <li>🚀 Быстрый старт</li>
+                </ul>
+            </div>
+            
+            <div class="job-card">
+                <div class="job-icon">🚗</div>
+                <h2>Водитель-доставщик</h2>
+                <div class="salary">💰 Условия обсуждаются</div>
+                <ul>
+                    <li>🗺️ Город + область</li>
+                    <li>🚘 <span class="benefit-highlight">Свой/наш транспорт</span></li>
+                    <li>📞 Поддержка 24/7</li>
+                    <li>💳 Еженедельные выплаты</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="cta-section">
+            <p class="cta-text">⚡ Откликнись прямо сейчас! ⚡</p>
+            
+            <button id="telegramBtn" class="cta-button">
+                <span>📱 Написать в Telegram</span>
+            </button>
+            
+            <p class="trust-badge">
+                <span class="pulse-dot"></span>✅ Официальное трудоустройство • Обучение за наш счёт
+            </p>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('telegramBtn').addEventListener('click', function() {
+            // Замените YOUR_TELEGRAM_USERNAME на ваш реальный Telegram username или bot
+            window.location.href = 'https://t.me/YOUR_TELEGRAM_USERNAME';
+        });
+    </script>
+</body>
+</html>
