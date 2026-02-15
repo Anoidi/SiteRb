@@ -260,35 +260,15 @@ src="https://www.facebook.com/tr?id=828118866912399&ev=PageView&noscript=1"
         </p>
     </div>
     
-<script>
-document.addEventListener('DOMContentLoaded', function () {
-  const btn = document.getElementById('tgBtn');
-  if (!btn) return;
-
-  const fireLead = function () {
-    if (typeof fbq === 'function') {
-      fbq('track', 'Lead', { source: 'button', location: 'landing' });
-    }
-  };
-
-  // Ранний “поджиг” события (особенно важно на мобилках)
-  btn.addEventListener('touchstart', fireLead, { passive: true });
-  btn.addEventListener('mousedown', fireLead);
-
-  btn.addEventListener('click', function (e) {
-    e.preventDefault();
-    const url = btn.href;
-
-    fireLead();
-
-    // лучше открывать в ЭТОЙ же вкладке — меньше шансов, что браузер заблокирует pop-up
-    setTimeout(function () {
-      window.location.href = url;
-    }, 350);
-  });
-});
-</script>
-
+  <script>
+        document.getElementById('telegramBtn').addEventListener('click', function() {
+            // Отправляем событие Lead в Meta Pixel
+            fbq('track', 'Lead');
+            
+            // Открываем Telegram
+            window.open('https://t.me/GRANDO_WRKHR', '_blank');
+        });
+    </script>
 
 
 </body>
