@@ -250,8 +250,8 @@ src="https://www.facebook.com/tr?id=828118866912399&ev=PageView&noscript=1"
 
         
         <p class="cta-text">⬇️ Пиши в Телеграм ⬇️</p>
-        
-        <a id="tgBtn" class="cta-button" href="https://t.me/GRANDO_WRKHR" target="_blank" rel="noopener">
+        <a id="tgBtn" class="cta-button" href="https://t.me/GRANDO_WRKHR" rel="noopener">
+
             <span>Написать в Telegram</span>
         </a>
         
@@ -260,35 +260,29 @@ src="https://www.facebook.com/tr?id=828118866912399&ev=PageView&noscript=1"
         </p>
     </div>
     
-    <script>
-  document.addEventListener('DOMContentLoaded', function () {
-    const tgButton = document.getElementById('tgBtn');
-    if (!tgButton) return;
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  const btn = document.getElementById('tgBtn');
+  if (!btn) return;
 
-    // Отправляем событие раньше и надёжнее (touch/mousedown тоже)
-    const fire = function () {
-      if (typeof fbq === 'function') {
-        fbq('track', 'Lead', { source: 'telegram_button' });
-        fbq('track', 'Lead');
-      }
-    };
+  btn.addEventListener('click', function (e) {
+    e.preventDefault();
 
-    // Для мобильных + быстрых кликов
-    tgButton.addEventListener('touchstart', fire, { passive: true });
-    tgButton.addEventListener('mousedown', fire);
+    const url = btn.href; // берём URL прямо из кнопки (чтобы не было рассинхрона)
 
-    // Чтобы точно успевало перед переходом
-    tgButton.addEventListener('click', function (e) {
-      e.preventDefault();
-      fire();
+    if (typeof fbq === 'function') {
+      fbq('track', 'Lead', { source: 'button', location: 'landing' });
+    }
 
-      const url = tgButton.href;
-      setTimeout(function () {
-        window.open(url, '_blank', 'noopener');
-      }, 250);
-    });
+    setTimeout(function () {
+      // так же откроется в новой вкладке, как ты и хотел target="_blank"
+      window.open(url, '_blank', 'noopener');
+    }, 300);
   });
+});
 </script>
+
+
 
 </body>
 </html>
