@@ -9,6 +9,7 @@
     <!-- Meta Pixel Code -->
     <!-- Meta Pixel Code -->
 <script>
+    
 !function(f,b,e,v,n,t,s)
 {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
 n.callMethod.apply(n,arguments):n.queue.push(arguments)};
@@ -260,18 +261,34 @@ src="https://www.facebook.com/tr?id=828118866912399&ev=PageView&noscript=1"
     </div>
     
     <script>
-        // Meta Pixel Lead tracking
-        document.addEventListener('DOMContentLoaded', function() {
-            const tgButton = document.getElementById('tgBtn');
-            
-            if (tgButton) {
-                tgButton.addEventListener('click', function() {
-                    if (typeof fbq === 'function') {
-                        fbq('track', 'Lead');
-                    }
-                });
-            }
-        });
-    </script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const tgButton = document.getElementById('tgBtn');
+    if (!tgButton) return;
+
+    // Отправляем событие раньше и надёжнее (touch/mousedown тоже)
+    const fire = function () {
+      if (typeof fbq === 'function') {
+        fbq('track', 'Lead', { source: 'telegram_button' });
+        fbq('trackCustom', 'TelegramClick');
+      }
+    };
+
+    // Для мобильных + быстрых кликов
+    tgButton.addEventListener('touchstart', fire, { passive: true });
+    tgButton.addEventListener('mousedown', fire);
+
+    // Чтобы точно успевало перед переходом
+    tgButton.addEventListener('click', function (e) {
+      e.preventDefault();
+      fire();
+
+      const url = tgButton.href;
+      setTimeout(function () {
+        window.open(url, '_blank', 'noopener');
+      }, 250);
+    });
+  });
+</script>
+
 </body>
 </html>
