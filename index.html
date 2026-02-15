@@ -265,19 +265,26 @@ document.addEventListener('DOMContentLoaded', function () {
   const btn = document.getElementById('tgBtn');
   if (!btn) return;
 
-  btn.addEventListener('click', function (e) {
-    e.preventDefault();
-
-    const url = btn.href; // берём URL прямо из кнопки (чтобы не было рассинхрона)
-
+  const fireLead = function () {
     if (typeof fbq === 'function') {
       fbq('track', 'Lead', { source: 'button', location: 'landing' });
     }
+  };
 
+  // Ранний “поджиг” события (особенно важно на мобилках)
+  btn.addEventListener('touchstart', fireLead, { passive: true });
+  btn.addEventListener('mousedown', fireLead);
+
+  btn.addEventListener('click', function (e) {
+    e.preventDefault();
+    const url = btn.href;
+
+    fireLead();
+
+    // лучше открывать в ЭТОЙ же вкладке — меньше шансов, что браузер заблокирует pop-up
     setTimeout(function () {
-      // так же откроется в новой вкладке, как ты и хотел target="_blank"
-      window.open(url, '_blank', 'noopener');
-    }, 300);
+      window.location.href = url;
+    }, 350);
   });
 });
 </script>
