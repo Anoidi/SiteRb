@@ -269,7 +269,7 @@ src="https://www.facebook.com/tr?id=828118866912399&ev=PageView&noscript=1"
     const fire = function () {
       if (typeof fbq === 'function') {
         fbq('track', 'Lead', { source: 'telegram_button' });
-        fbq('trackCustom', 'TelegramClick');
+        fbq('track', 'Lead');
       }
     };
 
