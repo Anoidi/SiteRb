@@ -262,14 +262,23 @@ src="https://www.facebook.com/tr?id=828118866912399&ev=PageView&noscript=1"
     </div>
     
   <script>
-        document.getElementById('tgBtn').addEventListener('click', function() {
-            // Отправляем событие Lead в Meta Pixel
-            fbq('track', 'Lead');
-            
-            // Открываем Telegram
-            window.open('https://t.me/GRANDO_WRKHR', '_blank');
-        });
-    </script>
+document.addEventListener('DOMContentLoaded', function () {
+  const btn = document.getElementById('tgBtn');
+  if (!btn) return;
+
+  btn.addEventListener('click', function (e) {
+    e.preventDefault();
+
+    if (typeof fbq === 'function') {
+      fbq('track', 'Lead');
+    }
+
+    setTimeout(function () {
+      window.location.href = btn.href; // надежнее, чем window.open после клика
+    }, 300);
+  });
+});
+</script>
 
 
 </body>
